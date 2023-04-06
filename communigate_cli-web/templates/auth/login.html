@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Log In{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <div class="input_section">
+      <div class="login">
+        <div class="label">
+          <label for="username">Username</label>
+        </div>
+        <div class="input_field">
+          <input name="username" id="username" required><span id="ldap_domain">{{ ldap_domain }}</span>
+        </div>
+      </div>
+
+      <div class="password">
+        <div class="label">
+          <label for="password">Password</label>
+        </div>
+        <div class="input_field">
+          <input type="password" name="password" id="password" required>
+        </div>
+      </div>
+    </div>
+
+    <div class="submit_btn">
+      <input type="submit" value="Log In" class="button">
+    </div>
+
+  </form>
+{% endblock %}

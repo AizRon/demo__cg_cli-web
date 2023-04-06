@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}Change password{% endblock %}</h1>
+{% endblock %}
+
+
+{% block content %}
+
+{% for message in get_flashed_messages(category_filter=['info']) %}
+    {% if message %}
+    <div class="flash flash_info">
+        {% for mes_line in message.split('\n') %}
+            {{ mes_line }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endfor %}
+
+  <form method="post">
+    <div class="input_section">
+      <table class="pwd">
+          <tr>
+              <td><label for="email">E-mail:</label></td>
+              <td><input type="email" id="email" name="email" required></td>
+          </tr>
+          <tr>
+              <td><label for="old_pass">Old password:</label></td>
+              <td><input type="password" id="old_pass"  name="old_pass" required></td>
+          </tr>
+          <tr>
+              <td><label for="new_pass">New password:</label></td>
+              <td><input type="password" id="new_pass"  name="new_pass" required></td>
+          </tr>
+          <tr>
+              <td><label for="rep_pass">Repeat password:</label></td>
+              <td><input type="password" id="rep_pass"  name="rep_pass" required></td>
+          </tr>
+      </table>
+    </div>
+
+    <div class="submit_btn">
+      <input type="submit" value="Change password" class="button">
+    </div>
+
+  </form>
+{% endblock %}

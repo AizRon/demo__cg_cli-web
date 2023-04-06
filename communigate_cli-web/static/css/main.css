@@ -1,0 +1,51 @@
+/* side section */
+.tabs { border: 1px solid #ccc; background-color: #f1f1f1; overflow: hidden; max-width: 20em }
+.tabs ul  { display: flex; flex-direction: column; list-style: none; margin: 0; padding: 0; }
+.tabs ul li { display: block; padding: 0.5rem; }
+button.tablinks {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  width: 100%;
+}
+
+button.tablinks:hover { background-color: #ddd; }
+button.tablinks.active { background-color: #ccc; }
+
+.side_item { display: flex; flex-direction: column; }
+
+/* MAIN */
+body .content { max-width: 960px; margin: 0 auto; background: white; width:100% }
+aside { display: flex }
+.input form div { display: flex; }
+input#command { max-width: 100%  }
+.tabs h4 { margin: 1em; color: var(--main-color) }
+form label { display: flex; align-items: center; }
+.info_cli { font-size: smaller; margin: 1em; }
+.info_cli p { display: flex; justify-content: center; }
+
+/* hyperlinks to DOC */
+.links_to_command .mgr_commands, .links_to_command .other_commands { display: flex; justify-content: center; }
+
+.links_to_command ul {
+  list-style-type: none;
+  display: flex; flex-direction: row; flex-wrap: wrap;
+  justify-content: center;
+  padding: 5px; margin: 5px;
+}
+.links_to_command li {  display: flex; margin: 5px }
+.links_to_command a:link, .links_to_command a:visited {
+  background-color: var(--flash-color);
+  color: var(--main-color);
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+.links_to_command a:hover, a:active { background-color: var(--main-color); color: white }
+
+.links_to_command .other_commands li a { font-size: 80% }

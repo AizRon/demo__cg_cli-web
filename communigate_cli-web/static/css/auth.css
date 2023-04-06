@@ -1,0 +1,42 @@
+body .content { max-width: 512px; }
+.content form { align-items: center; justify-content: center }
+.input_section { margin: 1em; display: flex; flex-direction: column }
+.label { margin-bottom: 5px }
+
+.login, .password { margin-bottom: 2em }
+.login .input_field { display:flex; }
+.login .input_field #ldap_domain {
+  height: inherit;
+  padding:8px;
+  border:1px solid var(--main-color);
+  margin: 0em;
+  background: var(--flash-color)
+}
+
+input#username, input#password {
+  margin-bottom: 0em;
+  padding:8px;
+  border:none;
+  border-bottom:1px solid #ccc;
+  width:100%
+}
+
+.submit_btn { align-items: center; justify-content: center }
+input.button {
+  border:none;
+  display:inline-block;
+  padding:8px 16px;
+  vertical-align:middle;
+  overflow:hidden;
+  text-decoration:none;
+  font-weight: bold;
+  color: var(--main-color);
+  background-color: var(--flash-color);
+  text-align:center;
+  cursor:pointer;
+  white-space:nowrap;
+}
+input.button:hover{box-shadow:0 8px 16px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19)}
+
+.w3-disabled, input.button:disabled,.w3-button:disabled{cursor:not-allowed;opacity:0.3}.w3-disabled *,:disabled *{pointer-events:none}
+input.button.w3-disabled:hover,.button:disabled:hover{box-shadow:none}

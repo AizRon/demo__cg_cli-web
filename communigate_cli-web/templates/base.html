@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block style %}{% endblock %}
+    <title>CGadmin - {% block title %}{% endblock %}</title>
+
+    <div class="head_wrap">
+
+        {% block head_wrap %}{% endblock %}
+
+        <div class="auth">
+        {% if g.user %}
+            <div>
+                <span>{{ g.user }}</span>
+                <a href="{{ url_for('auth.logout') }}">Log Out</a>
+            </div>
+
+        {% endif %}
+        </div>
+
+    </div>
+</head>
+
+
+<div class="sections">
+
+    {% block side_section %}{% endblock %}
+
+    <section class="content">
+        <header>
+            {% block header %}{% endblock %}
+        </header>
+
+        {% for message in get_flashed_messages(category_filter=['error']) %}
+            {% if message %}
+            <div class="flash">
+                {% for mes_line in message.split('\n') %}
+                    {{ mes_line }}<br>
+                {% endfor %}
+            </div>
+            {% endif %}
+        {% endfor %}
+
+        <div id="block_content">{% block content %}{% endblock %}</div>
+
+    </section>
+
+</div>
+
+</html>

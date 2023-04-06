@@ -1,0 +1,21 @@
+version: '3.7'
+services:
+  web:
+    build: .
+    container_name: web_cli
+    volumes:
+      - ./communigate_cli-web:/app-web
+      - ./unit/config.json:/docker-entrypoint.d/config.json
+      - ./unit/log/unit.log:/var/log/unit.log
+      - ./unit/state:/var/lib/unit
+    restart: always
+  nginx:
+    image: nginx:alpine
+    container_name: nginx
+    ports:
+      - 7667:80
+    volumes:
+      - ./nginx/conf.d:/etc/nginx/conf.d
+    restart: always
+    depends_on:
+      - web

@@ -1,0 +1,20 @@
+# Used in tools/handler.py (from tools.handler import get_config)
+ldap:
+  server: LDAP_SERVER:LDAP_PORT
+  read_user_dn: "CN=EXAMPLE_USER,DC=EXAMPLE_SERVER_DC"
+  read_user_pass: LDAP_USER_PASSWORD
+  search_base: "ou=Users,DC=EXAMPLE_SERVER_DC"
+  search_filter: (&(uid={username})(YOUR_LDAP_FILTER)
+### Example:  
+###   search_filter: "(&(uid={username})(memberof=cn=cg_admins,ou=Groups,DC=example,DC=domain))"
+  allowed_users:
+    - 
+
+cg:
+  host: COMMUNIGATE_SERVER
+  port: 106
+  admin_name: CG_ADMIN_USER
+  admin_pass: CG_ADMIN_PASS
+cg_ports:
+  admin_web: 8010
+  mail_web: 9100

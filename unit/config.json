@@ -1,0 +1,17 @@
+{
+  "listeners": {
+    "0.0.0.0:5000": {
+      "pass": "applications/cg_cli"
+    }
+  },
+  "applications": {
+    "cg_cli": {
+      "type": "python 3.10",
+      "working_directory": "/app-web/",
+      "path": "/app-web/",
+      "module": "wsgi",
+      "user": "root",
+      "group": "root"
+    }
+  }
+}

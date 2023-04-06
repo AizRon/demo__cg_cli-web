@@ -1,0 +1,134 @@
+{% extends 'base.html' %}
+
+{% block style %}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% endblock %}
+
+{% block header %}
+  <h1>{% block title %}CLI{% endblock %}</h1>
+{% endblock %}
+
+
+{% block side_section %}
+<aside class="side_section">
+    <div class="info_box">
+        <div id="host_info">
+            <div class="tabs">
+                <h4>Host Info</h4>
+                <ul>
+                {% for item in cg_data %}
+                    {% if 'pass' not in item %}
+                    <li>{{ item }}: {{ cg_data[item] }}</li>
+                    {% endif %}
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="sites">
+            <div class="tabs">
+                <h4>Services</h4>
+                <ul>
+                {% for service in cg_ports %}
+                    <li><div class="side_item">
+                        <form action="https://{{ cg_data['host'] }}:{{ cg_ports[service] }}">
+                            <button class="tablinks site_link">{{ service }}</a></button>
+                        </form>
+                    </div></li>
+                {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</aside>
+{% endblock %}
+
+
+{% block content %}
+<div class="input">
+    <form method="post">
+        <div>
+            <label for="command">Command:</label>
+            <input type="text" id="command" name="command">
+            <input type="submit">
+        </div>
+    </form>
+</div>
+<div class="links_to_command">
+    <div class="mgr_commands">
+        <ul>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#DomainSet">DomainSet</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Domain">Domain</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Account">Account</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Group">Group</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Forward">Forward</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#NamedTask">NamedTask</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Rights">Rights</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Mailbox">Mailbox</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Alert">Alert</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#WebSite">WebSite</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Lists">MailingLists</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#WebSkin">WebSkin</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#PBXApp">PBXApp</a></li>
+        </ul>
+    </div>
+    <div class="other_commands">
+        <ul>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Monitor">Мониторинг</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Stats">Статистика</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Directory">Справочник</a></li>
+            <li><a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html#Misc">Misc</a></li>
+        </ul>
+    </div>
+</div>
+<div class="info_cli">
+    <p><i>* весь список команд можно найти в документации: <a href="https://www.communigate.ru/CommuniGatePro/russian/CLI.html">https://www.communigate.ru/CommuniGatePro/russian/CLI.html</a></i></p>
+</div>
+<hr>
+
+{% for message in get_flashed_messages(category_filter=['info']) %}
+    {% if message %}
+    <div class="flash flash_info">
+        {% for mes_line in message.split('\n') %}
+            {{ mes_line }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% if output_msg %}
+<div class="output">
+    <div class="output_header">
+        <h1>Output:</h1>
+    </div>
+    <div class="text_box">
+        <div>
+            <p><h3>{{ cmd }}</h3></p>
+            <p>{{ output_msg|safe }}</p>
+        </div>
+    </div>
+{% for message in get_flashed_messages(category_filter=['info_cmd']) %}
+    {% if message %}
+    <div class="flash flash_info_cmd">
+        {% for mes_line in message.split('\n') %}
+            {{ mes_line }}<br>
+        {% endfor %}
+    </div>
+    {% endif %}
+{% endfor %}
+
+{% for message in get_flashed_messages(category_filter=['data_cmd']) %}
+    {% if message %}
+    <div class="output_header">
+        <h1>Data:</h1>
+    </div>
+    <div class="text_box">
+        <div>
+            <p>{{ message|safe }}</p>
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+</div>
+{% endif %}
+
+{% endblock %}
